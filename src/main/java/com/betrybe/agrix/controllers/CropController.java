@@ -6,6 +6,7 @@ import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.services.CropService;
 import com.betrybe.agrix.services.FarmService;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -118,5 +120,20 @@ public class CropController {
         crop.get().getFarm().getId());
 
     return ResponseEntity.ok().body(cropResponseDto);
+  }
+
+  /**
+   * Get method of the application that returns a list of crops within a period of
+   * time.
+   */
+  @GetMapping("/crops/search")
+  public ResponseEntity<List<CropResponseDto>> getCropByDate(
+      @RequestParam(name = "start") LocalDate initialHarvestDate,
+      @RequestParam(name = "end") LocalDate finalHarvestDate) {
+
+    List<CropResponseDto> allCrops = cropService
+        .getCropByDate(initialHarvestDate, finalHarvestDate);
+
+    return ResponseEntity.ok().body(allCrops);
   }
 }
