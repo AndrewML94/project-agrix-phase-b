@@ -82,6 +82,8 @@ public class CropController {
             crop.getId(),
             crop.getName(),
             crop.getPlantedArea(),
+            crop.getPlantedDate(),
+            crop.getHarvestDate(),
             crop.getFarm().getId()))
         .collect(Collectors.toList());
 
@@ -111,6 +113,8 @@ public class CropController {
         crop.get().getId(),
         crop.get().getName(),
         crop.get().getPlantedArea(),
+        crop.get().getPlantedDate(),
+        crop.get().getHarvestDate(),
         crop.get().getFarm().getId());
 
     return ResponseEntity.ok().body(cropResponseDto);
