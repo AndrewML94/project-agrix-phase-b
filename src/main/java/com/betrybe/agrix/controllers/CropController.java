@@ -57,6 +57,8 @@ public class CropController {
     response.put("id", createdCrop.getId());
     response.put("name", createdCrop.getName());
     response.put("plantedArea", createdCrop.getPlantedArea());
+    response.put("plantedDate", createdCrop.getPlantedDate());
+    response.put("harvestDate", createdCrop.getHarvestDate());
     response.put("farmId", existingFarm.getId());
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
